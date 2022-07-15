@@ -11,7 +11,7 @@ fabric = {
     }
   }
   ### Fabric Access Policies ###
-  access_policies = object({
+  access_policies = {
     domains = {
       fc_domains = {}
       l3_domains = {}
@@ -81,7 +81,7 @@ fabric = {
         }
       }
     }
-  })
+  }
   ### Fabric Inventory Policies ###
   inventory = {
     pods = {}
