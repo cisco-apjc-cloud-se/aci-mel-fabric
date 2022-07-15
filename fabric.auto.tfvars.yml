@@ -1,0 +1,146 @@
+fabric:
+  access_policies:
+    domains:
+      fc_domains:
+      - {}
+      l3_domains:
+      - {}
+      physical_domains:
+      - tf-phy-1:
+        - name: tf-phy-1
+          vlan_pool: tf-phy-vlan-1
+    interfaces:
+      leaf:
+        policy_groups:
+          leaf_access_bundles:
+          - tf-vpc-1-pg:
+              aaep_name: tf-svr-aaep
+              description: VPC Policy Group built by Terraform
+              lag_t: node
+              name: tf-vpc-1-pg
+          leaf_access_ports:
+          - {}
+          leaf_breakout_ports:
+          - {}
+        profiles:
+          fex_profiles:
+          - {}
+          interface_profiles:
+          - tf-vpc-1:
+              description: Interface profile built from Terraform
+              name: tf-vpc-1
+              port_selectors:
+              - tf-ps-e1-20:
+                  access_port_selector_type: range
+                  description: Port selector for VPC interface built from Terraform
+                  name: tf-ps-e1-20
+                  policy_group_name: tf-vpc-1-pg
+                  port_blocks:
+                  - tf-e1-20:
+                      description: E1/20
+                      from_card: 1
+                      from_port: 20
+                      name: tf-e1-20
+                      to_card: 1
+                      to_port: 20
+                  sub_port_blocks:
+                  - {}
+      spine:
+        policy_groups:
+          spine_ports:
+          - {}
+        profiles:
+          interface_profiles:
+          - {}
+    policies:
+      global:
+        aaeps:
+        - tf-svr-aaep:
+            description: AAEP built from Terraform
+            domain_list:
+            - tf-phy-1
+            enable_infra_vlan: true
+            name: tf-svr-aaep
+      interface:
+        cdp_policies:
+        - {}
+        fc_policies:
+        - {}
+        l2_policies:
+        - {}
+        link_level_policies:
+        - {}
+        lldp_policies:
+        - {}
+        mcp_policies:
+        - {}
+        pc_policies:
+        - {}
+        port_security_policies:
+        - {}
+        stp_policies:
+        - {}
+      switch:
+        vpc_domains:
+        - {}
+        vpc_protection_groups:
+        - vpc-20:
+            name: vpc-20
+            switch1: 103
+            switch2: 104
+    pools:
+      vlan_pools:
+      - tf-phy-vlan-1:
+          alloc_mode: static
+          description: Test VLAN pool built by Terraform
+          pool_name: tf-phy-vlan-1
+          ranges:
+          - static-1:
+              description: Static VLAN Range
+              from: 600
+              to: 699
+      vsan_pools:
+      - {}
+    switches:
+      leaf:
+        policy_groups:
+          access_switches:
+          - tf-lpair-1-pg:
+              name: tf-lpair-1-pg
+        profiles:
+          leaf_profiles:
+          - tf-lpair-1:
+              description: Leaf Profile built from Terraform
+              interface_profiles:
+              - tf-vpc-1
+              leaf_selectors:
+              - nodes-103-104:
+                  description: Node 103-104 Selector - built from Terraform
+                  name: nodes-103-104
+                  node_blocks:
+                  - nodes-103-104:
+                      description: Node 103-104 Block - built from Terraform
+                      from_node: 103
+                      name: nodes-103-104
+                      to_node: 104
+                  policy_group_name: tf-lpair-1-pg
+                  switch_association_type: range
+              name: tf-lpair-1
+      spine:
+        policy_groups:
+          spine_switches:
+          - {}
+        profiles:
+          spine_profiles:
+          - {}
+  fabric_policies:
+    policies:
+      interface:
+        l3_interface_policies:
+        - {}
+      monitoring:
+        fabric_node_control_policies:
+        - {}
+  inventory:
+    pods:
+    - {}
