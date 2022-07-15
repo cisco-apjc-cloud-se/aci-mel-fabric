@@ -31,15 +31,6 @@ fabric = {
               description             = "VPC Policy Group built by Terraform"
               lag_t                   = "node" # The bundled ports group link aggregation type: port channel vs virtual port channel. Allowed values are "not-aggregated", "node" and "link". Default is "link".
               aaep_name               = "tf-svr-aaep"
-              # link_level_policy_name  = optional(string)
-              # lldp_intf_policy_name   = optional(string)
-              # cdp_intf_policy_name    = optional(string)
-              # mcp_intf_policy_name    = optional(string)
-              # l2_intf_policy_name     = optional(string)
-              # fc_intf_policy_name     = optional(string)
-              # stp_intf_policy_name    = optional(string)
-              # port_sec_policy_name    = optional(string)
-              # pc_intf_policy_name     = optional(string) # LACP
             }
           }
           leaf_access_ports = {}
@@ -87,9 +78,10 @@ fabric = {
       global = {
         aaeps = {
           tf-svr-aaep = {
-            description = "AAEP built from Terraform"
-            name        = "tf-svr-aaep"
-            domain_list = ["tf-phy-1"]
+            name              = "tf-svr-aaep"
+            description       = "AAEP built from Terraform"
+            enable_infra_vlan = true
+            domain_list       = ["tf-phy-1"]
           }
         }
       }
