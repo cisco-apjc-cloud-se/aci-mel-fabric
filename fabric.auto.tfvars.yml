@@ -1,4 +1,5 @@
 fabric:
+  ### Fabric Access Policies ###
   access_policies:
     domains:
       fc_domains:
@@ -133,6 +134,7 @@ fabric:
         profiles:
           spine_profiles:
           - {}
+  ### Fabric Policies ###
   fabric_policies:
     policies:
       interface:
@@ -141,6 +143,7 @@ fabric:
       monitoring:
         fabric_node_control_policies:
         - {}
+  ### Fabric Inventory Policies ###
   inventory:
     pods:
     - {}
