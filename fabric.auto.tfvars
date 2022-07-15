@@ -55,6 +55,7 @@ fabric = {
                 tf-ps-e1-20 = {
                   name                      = "tf-ps-e1-20" # (Required) Name of Object Access Port Selector.
                   description               = "Port selector for VPC interface built from Terraform"
+                  access_port_selector_type = "ALL" # (Required) The host port selector type. Allowed values are "ALL" and "range". Default is "ALL".
                   policy_group_name         = "tf-vpc-1-pg" # Interface Policy Group Name
                   port_blocks = {
                     tf-e1-20 = {
