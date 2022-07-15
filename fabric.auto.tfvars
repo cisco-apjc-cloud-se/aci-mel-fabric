@@ -85,7 +85,13 @@ fabric = {
     }
     policies = {
       global = {
-        aaeps = {}
+        aaeps = {
+          tf-svr-aaep = {
+            description = "AAEP built from Terraform"
+            name        = "tf-phys-aaep"
+            domain_list = ["tf-phy-1"]
+          }
+        }
       }
       interface = {
         cdp_policies = {}
