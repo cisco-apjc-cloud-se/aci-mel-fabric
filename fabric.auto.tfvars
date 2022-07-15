@@ -25,13 +25,51 @@ fabric = {
     interfaces = {
       leaf = {
         policy_groups = {
-          leaf_access_bundles = {}
+          leaf_access_bundles = {
+            tf-vpc-1-pg = {
+              name                    = "tf-vpc-1-pg"
+              description             = "VPC Policy Group built by Terraform"
+              lag_t                   = "link" # The bundled ports group link aggregation type: port channel vs virtual port channel. Allowed values are "not-aggregated", "node" and "link". Default is "link".
+              # aaep_name               = optional(string)
+              # link_level_policy_name  = optional(string)
+              # lldp_intf_policy_name   = optional(string)
+              # cdp_intf_policy_name    = optional(string)
+              # mcp_intf_policy_name    = optional(string)
+              # l2_intf_policy_name     = optional(string)
+              # fc_intf_policy_name     = optional(string)
+              # stp_intf_policy_name    = optional(string)
+              # port_sec_policy_name    = optional(string)
+              # pc_intf_policy_name     = optional(string) # LACP
+            }
+          }
           leaf_access_ports = {}
           leaf_breakout_ports = {}
         }
         profiles = {
           fex_profiles = {}
-          interface_profiles = {}
+          interface_profiles = {
+            tf-vpc-1 = {
+              name        = "tf-vpc-1" # (Required) Name of Object leaf interface profile.
+              description = "Interface profile built from Terraform"
+              port_selectors = {
+                tf-ps-e1-20 = {
+                  name                      = "tf-ps-e1-20" # (Required) Name of Object Access Port Selector.
+                  description               = "Port selector for VPC interface built from Terraform"
+                  policy_group_name         = "tf-vpc-1-pg" # Interface Policy Group Name
+                  port_blocks = {
+                    tf-e1-20 = {
+                      name        = "tf-e1-20" # (Optional) name of Object Access Port Block.
+                      description = "E1/20"
+                      from_card   = 1 # (Optional) The beginning (from-range) of the card range block for the leaf access port block. Allowed value range is 1-100. Default value is "1".
+                      from_port   = 20 # (Optional) The beginning (from-range) of the port range block for the leaf access port block. Allowed value range is 1-127. Default value is "1".
+                      to_card     = 1 # (Optional) The end (to-range) of the card range block for the leaf access port block. Allowed value range is 1-100. Default value is "1".
+                      to_port     = 20 # (Optional) The end (to-range) of the port range block for the leaf access port block. Allowed value range is 1-127. Default value is "1".
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
       spine = {
@@ -46,7 +84,6 @@ fabric = {
     policies = {
       global = {
         aaeps = {}
-        # qos_class = {} Optional
       }
       interface = {
         cdp_policies = {}
