@@ -15,7 +15,12 @@ fabric = {
     domains = {
       fc_domains = {}
       l3_domains = {}
-      physical_domains = {}
+      physical_domains = {
+        tf-phy-1 = {
+          name        = "tf-phy-1"
+          vlan_pool   = "tf-phy-vlan-1"
+        }
+      }
     }
     interfaces = {
       leaf = {
@@ -60,7 +65,20 @@ fabric = {
       }
     }
     pools = {
-      vlan_pools = {}
+      vlan_pools = {
+        tf-phy-vlan-1 = {
+          pool_name     = string
+          description   = "Test VLAN pool built by Terraform"
+          alloc_mode    = "static"
+          ranges = {
+            static-1 = {
+              description   = "Static VLAN Range"
+              from          = 600
+              to            = 699
+            }
+          }
+        }
+      }
       vsan_pools = {}
     }
     switches = {
