@@ -41,7 +41,7 @@ fabric = {
     policies = {
       global = {
         aaeps = {}
-        qos_class = {}
+        # qos_class = {} Optional
       }
       interface = {
         cdp_policies = {}
