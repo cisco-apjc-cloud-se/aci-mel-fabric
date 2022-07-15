@@ -98,7 +98,13 @@ fabric = {
       }
       switch = {
         vpc_domains = {}
-        vpc_protection_groups = {}
+        vpc_protection_groups = {
+          vpc-20 = {
+            name    = "vpc-20" # (Required) Name of Object VPC Explicit Protection Group.
+            switch1 = 103 # (Required) Node Id of switch 1 to attach.
+            switch2 = 104 # (Required) Node Id of switch 2 to attach.
+          }
+        }
       }
     }
     pools = {
@@ -132,6 +138,7 @@ fabric = {
             tf-lpair-1 = {
               name            = "tf-lpair-1" # (Required) Name of Object leaf profile.
               description     = "Leaf Profile built from Terraform"
+              interface_profiles = ["tf-vpc-1"]
               leaf_selectors  = {
                 nodes-103-104 = {
                   name                    = "nodes-103-104" # (Required) Name of Object switch association.
