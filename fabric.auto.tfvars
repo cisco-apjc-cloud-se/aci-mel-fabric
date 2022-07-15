@@ -66,6 +66,7 @@ fabric = {
                       to_port     = 20 # (Optional) The end (to-range) of the port range block for the leaf access port block. Allowed value range is 1-127. Default value is "1".
                     }
                   }
+                  sub_port_blocks = {}
                 }
               }
             }
