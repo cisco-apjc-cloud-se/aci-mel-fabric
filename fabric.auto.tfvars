@@ -133,17 +133,17 @@ fabric = {
               name            = "tf-lpair-1" # (Required) Name of Object leaf profile.
               description     = "Leaf Profile built from Terraform"
               leaf_selectors  = {
-                nodes-101-102 = {
-                  name                    = "nodes-101-102" # (Required) Name of Object switch association.
+                nodes-103-104 = {
+                  name                    = "nodes-103-104" # (Required) Name of Object switch association.
                   switch_association_type = "range" # (Required) The leaf selector type. Allowed values: "ALL", "range", "ALL_IN_POD".
-                  description             = "Node 101-102 Selector - built from Terraform"
+                  description             = "Node 103-104 Selector - built from Terraform"
                   policy_group_name       = "tf-lpair-1-pg"
                   node_blocks = {
-                    nodes-101-102 = {
-                      name        = "nodes-101-102" # (Required) Name of Object node block.
-                      description = "Node 101-102 Block - built from Terraform"
-                      from_node   = 101 # (Optional) From Node ID. Range from 1 to 16000. Default value is "1".
-                      to_node     = 102 # (Optional) To node ID. Range from 1 to 16000. Default value is "1".
+                    nodes-103-104 = {
+                      name        = "nodes-103-104" # (Required) Name of Object node block.
+                      description = "Node 103-104 Block - built from Terraform"
+                      from_node   = 103 # (Optional) From Node ID. Range from 1 to 16000. Default value is "1".
+                      to_node     = 104 # (Optional) To node ID. Range from 1 to 16000. Default value is "1".
                     }
                   }
                 }
