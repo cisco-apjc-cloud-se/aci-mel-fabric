@@ -35,6 +35,15 @@ fabric = {
               aaep_profile = {
                 name = "tf-svr-aaep"
               }
+              cdp_intf_policy = {}
+              fc_intf_policy = {}
+              l2_intf_policy = {}
+              link_level_policy = {}
+              lldp_intf_policy = {}
+              mcp_intf_policy = {}
+              pc_intf_policy = {}
+              port_sec_policy = {}
+              stp_intf_policy = {}
             }
           }
           leaf_access_ports = {}
