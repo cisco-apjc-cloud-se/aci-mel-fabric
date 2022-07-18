@@ -78,10 +78,14 @@ fabric = {
       global = {
         aaeps = {
           tf-svr-aaep = {
-            name              = "tf-svr-aaep"
-            description       = "AAEP built from Terraform"
-            enable_infra_vlan = true
-            domain_list       = ["tf-phy-1"]
+            name                = "tf-svr-aaep"
+            description         = "AAEP built from Terraform"
+            enable_infra_vlan   = true
+            associated_domains  = {
+              tf-phy-1 = {
+                name = "tf-phy-1"
+              }
+            }
           }
         }
       }

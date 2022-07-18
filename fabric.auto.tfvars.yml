@@ -8,14 +8,15 @@ fabric:
       - {}
       physical_domains:
       - tf-phy-1:
-        - name: tf-phy-1
+          name: tf-phy-1
           vlan_pool: tf-phy-vlan-1
     interfaces:
       leaf:
         policy_groups:
           leaf_access_bundles:
           - tf-vpc-1-pg:
-              aaep_name: tf-svr-aaep
+              aaep_profile:
+                name: tf-svr-aaep
               description: VPC Policy Group built by Terraform
               lag_t: node
               name: tf-vpc-1-pg
@@ -35,7 +36,8 @@ fabric:
                   access_port_selector_type: range
                   description: Port selector for VPC interface built from Terraform
                   name: tf-ps-e1-20
-                  policy_group_name: tf-vpc-1-pg
+                  policy_group:
+                    name: tf-vpc-1-pg
                   port_blocks:
                   - tf-e1-20:
                       description: E1/20
@@ -58,8 +60,9 @@ fabric:
         aaeps:
         - tf-svr-aaep:
             description: AAEP built from Terraform
-            domain_list:
-            - tf-phy-1
+            associated_domains:
+            - tf-phy-1 :
+                name: tf-phy-1
             enable_infra_vlan: true
             name: tf-svr-aaep
       interface:
@@ -94,7 +97,7 @@ fabric:
       - tf-phy-vlan-1:
           alloc_mode: static
           description: Test VLAN pool built by Terraform
-          pool_name: tf-phy-vlan-1
+          name: tf-phy-vlan-1
           ranges:
           - static-1:
               description: Static VLAN Range
@@ -113,7 +116,8 @@ fabric:
           - tf-lpair-1:
               description: Leaf Profile built from Terraform
               interface_profiles:
-              - tf-vpc-1
+              - tf-vpc-1:
+                  name: tf-vpc-1
               leaf_selectors:
               - nodes-103-104:
                   description: Node 103-104 Selector - built from Terraform
@@ -124,7 +128,8 @@ fabric:
                       from_node: 103
                       name: nodes-103-104
                       to_node: 104
-                  policy_group_name: tf-lpair-1-pg
+                  policy_group:
+                    name: tf-lpair-1-pg
                   switch_association_type: range
               name: tf-lpair-1
       spine:
