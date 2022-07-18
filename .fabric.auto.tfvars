@@ -18,7 +18,9 @@ fabric = {
       physical_domains = {
         tf-phy-1 = {
           name        = "tf-phy-1"
-          vlan_pool   = "tf-phy-vlan-1"
+          vlan_pool   =  {
+            name = "tf-phy-vlan-1"
+          }
         }
       }
     }
