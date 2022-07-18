@@ -32,7 +32,9 @@ fabric = {
               name                    = "tf-vpc-1-pg"
               description             = "VPC Policy Group built by Terraform"
               lag_t                   = "node" # The bundled ports group link aggregation type: port channel vs virtual port channel. Allowed values are "not-aggregated", "node" and "link". Default is "link".
-              aaep_name               = "tf-svr-aaep"
+              aaep_profile = {
+                name = "tf-svr-aaep"
+              }
             }
           }
           leaf_access_ports = {}
@@ -49,7 +51,9 @@ fabric = {
                   name                      = "tf-ps-e1-20" # (Required) Name of Object Access Port Selector.
                   description               = "Port selector for VPC interface built from Terraform"
                   access_port_selector_type = "range" # (Required) The host port selector type. Allowed values are "ALL" and "range". Default is "ALL".
-                  policy_group_name         = "tf-vpc-1-pg" # Interface Policy Group Name
+                  policy_group = {
+                    name = "tf-vpc-1-pg" # Interface Policy Group Name
+                  }
                   port_blocks = {
                     tf-e1-20 = {
                       name        = "tf-e1-20" # (Optional) name of Object Access Port Block.
@@ -150,7 +154,9 @@ fabric = {
                   name                    = "nodes-103-104" # (Required) Name of Object switch association.
                   switch_association_type = "range" # (Required) The leaf selector type. Allowed values: "ALL", "range", "ALL_IN_POD".
                   description             = "Node 103-104 Selector - built from Terraform"
-                  policy_group_name       = "tf-lpair-1-pg"
+                  policy_group = {
+                    name = "tf-lpair-1-pg"
+                  }
                   node_blocks = {
                     nodes-103-104 = {
                       name        = "nodes-103-104" # (Required) Name of Object node block.
