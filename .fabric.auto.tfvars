@@ -148,7 +148,11 @@ fabric = {
             tf-lpair-1 = {
               name            = "tf-lpair-1" # (Required) Name of Object leaf profile.
               description     = "Leaf Profile built from Terraform"
-              interface_profiles = ["tf-vpc-1"]
+              interface_profiles = {
+                tf-vpc-1 = {
+                  name = "tf-vpc-1"
+                }
+              }
               leaf_selectors  = {
                 nodes-103-104 = {
                   name                    = "nodes-103-104" # (Required) Name of Object switch association.
